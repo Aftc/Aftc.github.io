@@ -17,7 +17,7 @@
 <!--<![endif]-->
 
 <head>
-  <title>Archives: 2016 | Being</title>
+  <title>SDOI2014 Round1 | Being</title>
   <!-- Meta data -->
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -84,7 +84,7 @@
 </head>
 
 <!--
-<body class="home-template">
+<body class="post-template">
 -->
 <body id="index" class="lightnav animsition">
 
@@ -219,64 +219,72 @@
 
         <!-- ============================ END Hero Image =========================== -->
       
-
-
-<section id="services">
+<section id="intro">
     <div class="container">
-        <div class="row">
-            <div class="col-md-10 col-md-offset-1">
-                <div class="row boxes">
-                    
-                    
-                        
-                        
-                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
-                            
-                              <h4 class="title"><a href="/2016/03/26/Practicing-Plan/">Practicing Plan</a></h4>
-                            
-                            <p><time datetime="2016-03-26T03:49:46.000Z"><a href="/2016/03/26/Practicing-Plan/">2016-03-26</a></time></p>
-                        </div>
-                    
-                        
-                        
-                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
-                            
-                              <h4 class="title"><a href="/2016/03/25/SDOI2014-Round1/">SDOI2014 Round1</a></h4>
-                            
-                            <p><time datetime="2016-03-25T04:17:39.000Z"><a href="/2016/03/25/SDOI2014-Round1/">2016-03-25</a></time></p>
-                        </div>
-                    
-                        
-                        
-                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
-                            
-                              <h4 class="title"><a href="/2016/03/25/Function-Test/">Function Test</a></h4>
-                            
-                            <p><time datetime="2016-03-25T04:02:42.000Z"><a href="/2016/03/25/Function-Test/">2016-03-25</a></time></p>
-                        </div>
-                    
-                        
-                        
-                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
-                            
-                              <h4 class="title"><a href="/2016/03/25/hello-world/">Hello World</a></h4>
-                            
-                            <p><time datetime="2016-03-25T01:31:57.198Z"><a href="/2016/03/25/hello-world/">2016-03-25</a></time></p>
-                        </div>
-                    
-                </div>
-            </div>    
+        <div class="row col-md-offset-2">
+            <div class="col-md-8">
+    			<span class="post-meta">
+      <time datetime="2016-03-25T04:17:39.000Z" itemprop="datePublished">
+          2016-03-25
+      </time>
+    
+</span>
+                <h1>SDOI2014 Round1</h1>
+            </div>
         </div>
-    </div>
-</section> 
+        <div class="col-md-8 col-md-offset-2">
+      		<p>我们不生产题解，我们只是题解的搬运工<br><a id="more"></a></p>
+<h2 id="D1T1-数表"><a href="#D1T1-数表" class="headerlink" title="D1T1 数表"></a>D1T1 数表</h2><p><a href="http://www.lydsy.com/JudgeOnline/problem.php?id=3529" target="_blank" rel="external">BZOJ3529</a><br>大力推公式就可以了<br>先不考虑$a$的限制，那么<br>$$\begin{align}<br>Ans &amp; =\sum_{i=1}^{n}\sum_{j=1}^{m}\sigma_0(gcd(i,j)) \\<br>    &amp; =\sum_{d}\sum_{i=1}^{\lfloor \frac{n}{d}\rfloor}\sum_{j=1}^{\lfloor\frac{m}{d} \rfloor}\sigma_0(d)\epsilon(gcd(i,j)) \\<br>    &amp; =\sum_{d}\sigma_0(d)\sum_{i=1}^{\lfloor \frac{n}{d}\rfloor}\sum_{j=1}^{\lfloor \frac{m}{d}\rfloor}\sum_{d’|gcd(i,j)}\mu(d’) \\<br>    &amp; =\sum_{d}\sum_{d’}\sigma_0(d)\mu(d’)\lfloor\frac{n}{dd’}\rfloor\lfloor\frac{m}{dd’}\rfloor \\<br>    &amp; =\sum_{T}\sum_{d|T}\sigma_0(d)\mu(\frac{T}{d})\lfloor\frac{n}{T}\rfloor\lfloor\frac{m}{T}\rfloor<br>\end{align}$$<br>设${\rm F}(n)=\sum_{d|n}\sigma_0(d)\mu(\frac{n}{d})$<br>那么只要处理出${\rm F}(n)$的前缀和就可以$O(\sqrt n)$计算答案了<br>显然可以用倍增筛法$O(n\lg n)$做<br>再来考虑$a$的限制，发现题目并没有强制在线，那么可以离线所有询问，按照$a$的大小排序，每次询问拿出$\sigma_0(n)\leq$当前$a$的$n$，去更新它的倍数的${\rm F}$<br>用树状数组维护${\rm F}$前缀和</p>
+<hr>
+<h2 id="D1T2-数数"><a href="#D1T2-数数" class="headerlink" title="D1T2 数数"></a>D1T2 数数</h2><p><a href="http://www.lydsy.com/JudgeOnline/problem.php?id=3530" target="_blank" rel="external">BZOJ3530</a><br>很显然的AC自动机上的Dp<br>先建出AC自动机，然后做两次Dp<br>第一次：设$g[i][j]$表示串长为i，该串在AC自动机上匹配到节点$j$，并且串首数字不是0的方案数<br>第二次：设$f[i][j][1/0]$表示串长为$i$，该串在AC自动机上匹配到节点$j$，是/否已经比N小，并且串首数字不是0的方案数<br>yy一下转移</p>
+<hr>
+<h2 id="D1T3-旅行"><a href="#D1T3-旅行" class="headerlink" title="D1T3 旅行"></a>D1T3 旅行</h2><p><a href="http://www.lydsy.com/JudgeOnline/problem.php?id=3531" target="_blank" rel="external">BZOJ3531</a><br>模板题<br>按照$Dfs$序树链剖分，那么一条重链在$Dfs$序中是连续的一段区间，这样一种颜色只要开一棵线段树就行了</p>
+<hr>
+<h2 id="D2T1-Lis"><a href="#D2T1-Lis" class="headerlink" title="D2T1 Lis"></a>D2T1 Lis</h2><p><a href="http://www.lydsy.com/JudgeOnline/problem.php?id=3532" target="_blank" rel="external">BZOJ3532</a><br>第一问拆点最小割<br>第二问，贪心考虑最小的$c$能否取到，也就是问这个点对应的边是否在最小割当中。<br>那么看一下从$u$到$u’$有没有增广路，就知道有没有被割掉了<br>如果最小的$c$能取到，那么从$u’$向$u$退流，否则不退流。然后继续取第二小的。<br>因为$c$两两不同，所以贪心一定是对的</p>
+<hr>
+<h2 id="D2T2-向量集"><a href="#D2T2-向量集" class="headerlink" title="D2T2 向量集"></a>D2T2 向量集</h2><p><a href="http://www.lydsy.com/JudgeOnline/problem.php?id=3532" target="_blank" rel="external">BZOJ3533</a><br>可以发现，一次询问的区间中，答案点一定在这些点组成的凸包上，更确切一些，当询问为$(x,y)$，当$y\leq 0$时答案在下凸包上，否则答案在上凸包上。<br>而且<del>感觉好像应该大概</del>发现答案具有三分性。<br>开始的想法是分块，每$\sqrt n$个点维护一个凸包，询问时在凸包上三分<br>但是似乎会很慢，不知道会不会被卡掉，就没敢写<br>可以建立线段树，将每次询问分割成$\log_{2}n$个树上节点，然后可以类似记忆化搜索的方式处理：如果询问的一个节点上没有信息，那就暴力建立凸包再三分；否则在已经建立好的凸包上三分。<br>分析一下复杂度：线段树节点的总长度不超过$O(n\lg n)$，每次建立凸包是$O(凸包大小)$的，所以建立所有凸包的复杂度为$O(n\lg n)$。询问的节点数不超过$O(n\lg n)$，每次三分是$O(n\lg n)$的，所以完成所有询问的复杂度为$O(n\lg^2 n)$。</p>
+<hr>
+<h2 id="D2T3-重建"><a href="#D2T3-重建" class="headerlink" title="D2T3 重建"></a>D2T3 重建</h2><p><a href="http://www.lydsy.com/JudgeOnline/problem.php?id=3534" target="_blank" rel="external">BZOJ3534</a><br>总结了一下一类矩阵树问题的解决规律<br>考虑最基本的矩阵树定理，可以求解无向图无标号有根树<del>（什么乱七八糟的有根没根有标号无标号根本搞不清楚）</del>的个数。</p>
+<p>Kirchhoff矩阵构造：考虑点，$A[i][i]$为$i$的度数。考虑边，若存在一条边$(i,j)$，那么$A[i][j]=-1$。</p>
+<p>一个很重要的性质：每一行和每一列的元素总和都为0</p>
+<p>算法原理其实是：这个算法考虑了每一个包含$n-1$条边的集合，若该集合能够形成一棵树，那么在最终答案中加$1$</p>
+<p>矩阵树定理的拓展：假设每条边上有一个权值，并且要求所有生成树的边权乘积之和。那么考虑每条边$(i,j)$，$A[i][j]$为边权的相反数。考虑每个点，$A[i][i]$为与该点相连的所有边权（为了满足那条性质）。然后照旧求一下随便一个余子式就行了。</p>
+<p>对于这道题，我们要求$$\sum_{T}\prod_{e\in T}P_e\prod_{e\notin T}(1-P_e)$$<br>那么我们先使e的边权为$\frac{P_e}{1-P_e}$，那么可以用拓展矩阵树定理求出$$\sum_{T}\prod_{e\in T}\frac{P_e}{1-P_e}$$<br>然后令$S=\prod_{e}1-P_e$<br>那么<br>$$\begin{align}<br>Ans &amp; =S*\sum_{T}\prod_{e\in T}\frac{P_e}{1-P_e} \\<br>    &amp; =\sum_{T}\prod_{e\in T}P_e\prod_{e\notin T}(1-P_e)<br>\end{align}$$</p>
 
-<section id="statement">
-    <div class="container text-center wow fadeInUp" data-wow-delay="0.5s">
-        <div class="row">
-            <p>この世界は残酷だ</p>
+            <div class="clearfix"></div>
+            <hr class="nogutter">
         </div>
+        <nav class="pagination" role="pagination">
+    
+    <a class="pull-left" href="/2016/03/26/Practicing-Plan/" style="float: left;">
+        ← Practicing Plan
+    </a>
+    
+    
+    <a class="pull-right" href="/2016/03/25/Function-Test/">
+        Function Test →
+    </a>
+    
+</nav>
+
+        <div class="duoshuo">
+<div class="ds-thread" data-thread-key="2016/03/25/SDOI2014-Round1/" data-title="SDOI2014 Round1" data-url="http://yoursite.com/2016/03/25/SDOI2014-Round1/"></div>
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"duoshuo_name"};
+(function() {
+	var ds = document.createElement('script');
+	ds.type = 'text/javascript';ds.async = true;
+	ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+	ds.charset = 'UTF-8';
+	(document.getElementsByTagName('head')[0] 
+	 || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+</script>
+</div>
     </div>
 </section>
+
+
       
 <!-- ============================ Footer =========================== -->
 
