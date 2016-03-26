@@ -238,7 +238,7 @@
 <hr>
 <h2 id="D1T2-数数"><a href="#D1T2-数数" class="headerlink" title="D1T2 数数"></a>D1T2 数数</h2><p><a href="http://www.lydsy.com/JudgeOnline/problem.php?id=3530" target="_blank" rel="external">BZOJ3530</a><br>很显然的AC自动机上的Dp<br>先建出AC自动机，然后做两次Dp<br>第一次：设$g[i][j]$表示串长为i，该串在AC自动机上匹配到节点$j$，并且串首数字不是0的方案数<br>第二次：设$f[i][j][1/0]$表示串长为$i$，该串在AC自动机上匹配到节点$j$，是/否已经比N小，并且串首数字不是0的方案数<br>yy一下转移</p>
 <hr>
-<h2 id="D1T3-旅行"><a href="#D1T3-旅行" class="headerlink" title="D1T3 旅行"></a>D1T3 旅行</h2><p><a href="http://www.lydsy.com/JudgeOnline/problem.php?id=3531" target="_blank" rel="external">BZOJ3531</a><br>模板题<br>按照$Dfs$序树链剖分，那么一条重链在$Dfs$序中是连续的一段区间，这样一种颜色只要开一棵线段树就行了</p>
+<h2 id="D1T3-旅行"><a href="#D1T3-旅行" class="headerlink" title="D1T3 旅行"></a>D1T3 旅行</h2><p><a href="http://www.lydsy.com/JudgeOnline/problem.php?id=3531" target="_blank" rel="external">BZOJ3531</a><br>模板题<br>按照Dfs序树链剖分，那么一条重链在Dfs序中是连续的一段区间，这样一种颜色只要开一棵线段树就行了</p>
 <hr>
 <h2 id="D2T1-Lis"><a href="#D2T1-Lis" class="headerlink" title="D2T1 Lis"></a>D2T1 Lis</h2><p><a href="http://www.lydsy.com/JudgeOnline/problem.php?id=3532" target="_blank" rel="external">BZOJ3532</a><br>第一问拆点最小割<br>第二问，贪心考虑最小的$c$能否取到，也就是问这个点对应的边是否在最小割当中。<br>那么看一下从$u$到$u’$有没有增广路，就知道有没有被割掉了<br>如果最小的$c$能取到，那么从$u’$向$u$退流，否则不退流。然后继续取第二小的。<br>因为$c$两两不同，所以贪心一定是对的</p>
 <hr>
