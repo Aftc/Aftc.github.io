@@ -17,7 +17,7 @@
 <!--<![endif]-->
 
 <head>
-  <title>SDOI2015 Round1 | Being</title>
+  <title>Archives: 2016/4 | Being</title>
   <!-- Meta data -->
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -84,7 +84,7 @@
 </head>
 
 <!--
-<body class="post-template">
+<body class="home-template">
 -->
 <body id="index" class="lightnav animsition">
 
@@ -219,78 +219,37 @@
 
         <!-- ============================ END Hero Image =========================== -->
       
-<section id="intro">
+
+
+<section id="services">
     <div class="container">
-        <div class="row col-md-offset-2">
-            <div class="col-md-8">
-    			<span class="post-meta">
-      <time datetime="2016-03-27T04:29:07.000Z" itemprop="datePublished">
-          2016-03-27
-      </time>
-    
-</span>
-                <h1>SDOI2015 Round1</h1>
-            </div>
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <div class="row boxes">
+                    
+                    
+                        
+                        
+                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
+                            
+                              <h4 class="title"><a href="/2016/04/09/SDOI2012-Round1-Day1/">SDOI2012 Round1 Day1</a></h4>
+                            
+                            <p><time datetime="2016-04-09T07:49:07.000Z"><a href="/2016/04/09/SDOI2012-Round1-Day1/">2016-04-09</a></time></p>
+                        </div>
+                    
+                </div>
+            </div>    
         </div>
-        <div class="col-md-8 col-md-offset-2">
-      		<p>SDOI Round2题面常年下线，不过多亏这样我可以偷懒了(这么傻还敢偷懒FuQ)<br><a id="more"></a></p>
-<h4 id="D1T1-排序"><a href="#D1T1-排序" class="headerlink" title="D1T1 排序"></a>D1T1 排序</h4><p><a href="http://www.lydsy.com/JudgeOnline/problem.php?id=3990" target="_blank" rel="external">BZOJ3990</a></p>
-<p>首先我们定义第i种操作是“将序列从左到右划分为$2^{n-i+1}$段，每段恰好包括$2^{i-1}$个数，然后整体交换其中两段”<br>根据这些操作的性质，容易发现对于一个操作序列，如果交换其中任意两个操作的顺序，这个操作序列最终产生的效果不会改变<br>又因为每种操作只能用一次，所以可以从小到大一个个考虑每种操作用还是不用<br>又容易发现，大的操作无法对小的区间产生影响，所以如果要达到有序的状态，那么在完成第i种操作后，将序列从左到右分成$2^{n-i}$个长度为$2^i$的段，每段必须要满足两个条件：</p>
-<ol>
-<li>第一个数为$k\times 2^i+1$，k为自然数</li>
-<li>所有数是连续递增的</li>
-</ol>
-<p>然后就可以搜索了，搜索的时候找到不合法的段，交换一下位置什么的，具体自己想想很简单的<br>奇怪的题，但是仔细想想也不奇怪，多自己想想啊少年别总看题解啊/(ㄒoㄒ)/~~</p>
-<hr>
-<h4 id="D1T2-寻宝游戏"><a href="#D1T2-寻宝游戏" class="headerlink" title="D1T2 寻宝游戏"></a>D1T2 寻宝游戏</h4><p><a href="http://www.lydsy.com/JudgeOnline/problem.php?id=3991" target="_blank" rel="external">BZOJ3991</a></p>
-<p>画了画图发现要走的路径一定在虚树上<br>那么动态维护一下虚树？好像没有这种算法。<br>其实只要按照Dfs序维护一下所有关键点的位置就好了，答案其实就是Dfs中相邻关键点的距离和再加上第一个关键点到最后一个关键点的距离。<br>那么用平衡树维护Dfs序，支持插入删除前驱后继，再用树上倍增求一下距离。</p>
-<hr>
-<h4 id="D1T3-序列统计"><a href="#D1T3-序列统计" class="headerlink" title="D1T3 序列统计"></a>D1T3 序列统计</h4><p><a href="http://www.lydsy.com/JudgeOnline/problem.php?id=3992" target="_blank" rel="external">BZOJ3992</a></p>
-<p>有点带劲的一道题<br>先考虑暴力的Dp，$f[i][j]$表示长度为i的序列，乘积模M为j的方案数，复杂度$O(nm^2)$。<br>发现可以倍增，复杂度$O(m^2\lg n)$，大概60分。<br>然后呢，发现M是质数，这保证了M有原根g，而1~M-1中的数都能表示成g的若干次方。<br>定义新的状态：$f[i][j]$表示长度为i的序列，乘积模M为$g^j$的方案数。<br>然后发现Dp方程是一个卷积的形式，又因为是要在模域下求方案数，所以用NTT比较合适。<br>经过尝试后发现，模数Mod=1004535809的原根是3，而$2^{21}|Mod-1$，非常适合用来做NTT。<br>最终复杂度$O(m\lg m\lg n)$</p>
-<hr>
-<h4 id="D2T1-星际战争"><a href="#D2T1-星际战争" class="headerlink" title="D2T1 星际战争"></a>D2T1 星际战争</h4><p><a href="http://www.lydsy.com/JudgeOnline/problem.php?id=3993" target="_blank" rel="external">BZOJ3993</a></p>
-<p>二分+最大流</p>
-<hr>
-<h4 id="D1T2-约数个数和"><a href="#D1T2-约数个数和" class="headerlink" title="D1T2 约数个数和"></a>D1T2 约数个数和</h4><p><a href="http://www.lydsy.com/JudgeOnline/problem.php?id=3994" target="_blank" rel="external">BZOJ3994</a></p>
-<p>当时花了两个小时教会了我零基础的儿子，他写题解写了一晚上，所以我应该不能写得更清楚了。<br>直接给个链接吧：<a href="http://vanfei.is-programmer.com/posts/197336.html" target="_blank" rel="external">Click Here</a></p>
-<hr>
-<h4 id="D2T3-道路修建"><a href="#D2T3-道路修建" class="headerlink" title="D2T3 道路修建"></a>D2T3 道路修建</h4><p><a href="http://www.lydsy.com/JudgeOnline/problem.php?id=3995" target="_blank" rel="external">BZOJ3995</a></p>
-<p>一眼SB大讨论，但是写完PushUp()以后其实就很好写了<br>其实就是要求一个区间中的最小生成树<br>那就考虑区间中的连通状态以及怎么合并咯<br>发现有以下五类合法的连通状态（图太丑不好意思放出来，还是点开看图吧）：<br><a href="/img/BZOJ3995.png">五类连通情况</a><br>每类情况中有多种可能，但是每种可能在合并时都是等价的，所以看成一类<br>合并时可以只连一条边，也可以两条边都连上，那么算一算发现会有$5\times 5\times 2=50$种情况要讨论<br>但是有些连接方式是不合法的，所以事实上只有25种情况，大力码就好了</p>
+    </div>
+</section> 
 
-            <div class="clearfix"></div>
-            <hr class="nogutter">
+<section id="statement">
+    <div class="container text-center wow fadeInUp" data-wow-delay="0.5s">
+        <div class="row">
+            <p>热烈地去爱，坚强地活着</p>
         </div>
-        <nav class="pagination" role="pagination">
-    
-    <a class="pull-left" href="/2016/04/09/SDOI2012-Round1-Day1/" style="float: left;">
-        ← SDOI2012 Round1 Day1
-    </a>
-    
-    
-    <a class="pull-right" href="/2016/03/25/SDOI2014-Round1/">
-        SDOI2014 Round1 →
-    </a>
-    
-</nav>
-
-        <div class="duoshuo">
-<div class="ds-thread" data-thread-key="2016/03/27/SDOI2015-Round1/" data-title="SDOI2015 Round1" data-url="http://yoursite.com/2016/03/27/SDOI2015-Round1/"></div>
-<script type="text/javascript">
-var duoshuoQuery = {short_name:"duoshuo_name"};
-(function() {
-	var ds = document.createElement('script');
-	ds.type = 'text/javascript';ds.async = true;
-	ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-	ds.charset = 'UTF-8';
-	(document.getElementsByTagName('head')[0] 
-	 || document.getElementsByTagName('body')[0]).appendChild(ds);
-})();
-</script>
-</div>
     </div>
 </section>
-
-
       
 <!-- ============================ Footer =========================== -->
 
