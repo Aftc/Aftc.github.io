@@ -17,7 +17,7 @@
 <!--<![endif]-->
 
 <head>
-  <title>Being</title>
+  <title>SDOI2013 | Being</title>
   <!-- Meta data -->
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -84,7 +84,7 @@
 </head>
 
 <!--
-<body class="home-template">
+<body class="post-template">
 -->
 <body id="index" class="lightnav animsition">
 
@@ -218,206 +218,83 @@
         <!-- // End height spacing helper -->
 
         <!-- ============================ END Hero Image =========================== -->
-      <!-- ============================ Content =========================== -->
-
+      
 <section id="intro">
     <div class="container">
-        
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2 opening-statement">
-                <div class="col-md-4">
-                    <h3><a href="/2016/04/29/SDOI2013/">SDOI2013</a></h3>
-                    <span>
-                        <span class="post-meta">
+        <div class="row col-md-offset-2">
+            <div class="col-md-8">
+    			<span class="post-meta">
       <time datetime="2016-04-29T01:28:38.000Z" itemprop="datePublished">
           2016-04-29
       </time>
     
 </span>
-                    </span>
-                </div>
-                <div class="col-md-8">
-                    <p>
-                      
-                        <p>为了不留下黑历史，我还是不要作任何主观评价比较好<br>怎么做得到嘛！<br>
-                      
-                    </p>
-                    
-                    <p class="pull-right readMore">
-                        <a href="/2016/04/29/SDOI2013/">Read More...</a>
-                    </p>
-                    
-                </div>
-                <div class="clearfix"></div>
-                <hr class="nogutter">
+                <h1>SDOI2013</h1>
             </div>
         </div>
-        
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2 opening-statement">
-                <div class="col-md-4">
-                    <h3><a href="/2016/04/09/SDOI2012-Round1-Day1/">SDOI2012 Round1 Day1</a></h3>
-                    <span>
-                        <span class="post-meta">
-      <time datetime="2016-04-09T07:49:07.000Z" itemprop="datePublished">
-          2016-04-09
-      </time>
-    
-</span>
-                    </span>
-                </div>
-                <div class="col-md-8">
-                    <p>
-                      
-                        <p>抱怨无济于事<br>
-                      
-                    </p>
-                    
-                    <p class="pull-right readMore">
-                        <a href="/2016/04/09/SDOI2012-Round1-Day1/">Read More...</a>
-                    </p>
-                    
-                </div>
-                <div class="clearfix"></div>
-                <hr class="nogutter">
-            </div>
+        <div class="col-md-8 col-md-offset-2">
+      		<p>为了不留下黑历史，我还是不要作任何主观评价比较好<br>怎么做得到嘛！<br><a id="more"></a></p>
+<blockquote>
+<h4 id="R1D1T1-随机数生成器"><a href="#R1D1T1-随机数生成器" class="headerlink" title="R1D1T1 随机数生成器"></a>R1D1T1 随机数生成器</h4><p><a href="http://www.lydsy.com/JudgeOnline/problem.php?id=3122" target="_blank" rel="external">BZOJ3122</a><br>BSGS+大讨论（不想做）<br>待补</p>
+</blockquote>
+<h4 id="R1D1T2-森林"><a href="#R1D1T2-森林" class="headerlink" title="R1D1T2 森林"></a>R1D1T2 森林</h4><p><a href="http://www.lydsy.com/JudgeOnline/problem.php?id=3123" target="_blank" rel="external">BZOJ3123</a><br>容易发现如果在一棵树上查询，那就是主席树<br>这道题只有合并操作，那就好办了，启发式合并<br>每次Dfs小的那棵树，把小的那棵树合并进大的那棵树的主席树里</p>
+<h4 id="R1D1T3-直径"><a href="#R1D1T3-直径" class="headerlink" title="R1D1T3 直径"></a>R1D1T3 直径</h4><p><a href="http://www.lydsy.com/JudgeOnline/problem.php?id=3124" target="_blank" rel="external">BZOJ3124</a><br>第一问两次Dfs；也可以Dp：$f[u]$表示u的子树中直径，$g[u]$表示u子树中最深点深度，那么$f[u]=max(max(f[v]), max(g[v])+secondmax(g[v]))$，v表示u的儿子<br>第二问，如果每条直径都经过一条边，那么去掉这条边后形成了两个联通块，这两个联通块的直径一定会比原树的直径小（下面开始思维混乱，其实说说麻烦自己yy一下还是很简单的）<br>树形Dp一下，调用$Dfs(u, fa, F, G)$，传入参数F表示除了u的子树以外的联通块中的直径，G表示除了u的子树以外的联通块中的点距离u的最远距离<br>Dp数组$h[u][0..1]$表示u儿子们子树中的最深深度的最大值和次大值，$l[u][0..1]$表示u的儿子们的子树直径的最大值和次大值，这个可以在前面Dp算直径的时候算<br>那么显然去掉$(u,fa)$这条边后两个联通块的直径就是$F$和$f[u]$<br>考虑如何从u向儿子v转移，也就是说新的$F’$、$G’$是什么。<br>先设一个变量$tmp$，如果$g[v]==h[u][0]$<br>那么$$tmp=G+h[u][1],G’=max(G+w(fa, u), h[u][1])$$<br>否则$$tmp=G+h[u][0],G’=max(G+w(fa, u), h[u][0])$$<br>如果$f[v]==l[u][0]$，$F’=max(F, tmp, l[u][1])$，否则$F’=max(F, tmp, l[u][0])$</p>
+<p>如果上面哪里写错了……那很正常</p>
+<h4 id="R1D2T1-方程"><a href="#R1D2T1-方程" class="headerlink" title="R1D2T1 方程"></a>R1D2T1 方程</h4><p><a href="http://www.lydsy.com/JudgeOnline/problem.php?id=3129" target="_blank" rel="external">BZOJ3129</a><br>第二类条件直接在$m$中减掉$a-1$就好了，这样限制就变成了$x&gt;=1$<br>第一类条件很少，可以容斥，强制使得一些限制不满足，转化为第二类限制<br>然后就是组合数取模了，直接把模数分解成$\prod p^c$，对于每个$p^c$取模，然后CRT合并就好了<br>怎么取模呢，用阳阳教我的“拓展卢卡斯”（这应该是个口胡的名字）<br>考虑一个组合数$C_m^n=\frac{n!}{m!(n-m)!}$，把分母分子中的$p$都提取出来然后消掉，就可以算逆元了<br>现在考虑如何把一个阶乘中的$p$提取出来。<br>先预处理$p^c$以内不是$p$倍数的数的前缀乘积$Mul[i]$<br>显然$x$以内$p$的倍数个数是$\lfloor \frac{x}{p} \rfloor$，它们是$p,2p,3p……$，那么可以提取出$\lfloor \frac{x}{p} \rfloor$个p，并且这些数变成了$1,2,3……$，于是可以递归<br>剩下的数不是p的倍数，利用$Mul[i]$算<br>又发现$x\equiv p^c+x(mod p^c)$，于是每$p^c$个数的乘积是相同的，于是快速幂<br>妈的zz讲不清楚</p>
+<h4 id="R1D2T2-费用流"><a href="#R1D2T2-费用流" class="headerlink" title="R1D2T2 费用流"></a>R1D2T2 费用流</h4><p><a href="http://www.lydsy.com/JudgeOnline/problem.php?id=3130" target="_blank" rel="external">BZOJ3130</a><br>显然把所有P的单位费用都放在流量最大的一条边上是最优的<br>那么二分最大边就好了，注意要实数二分</p>
+<h4 id="R1D2T3-淘金"><a href="#R1D2T3-淘金" class="headerlink" title="R1D2T3 淘金"></a>R1D2T3 淘金</h4><p><a href="http://www.lydsy.com/JudgeOnline/problem.php?id=3131" target="_blank" rel="external">BZOJ3131</a><br>显然可以行列分开考虑，如果变化后为$x$的数有$a$个，为$y$的数有$b$个，那么坐标为$(x,y)$的数有$ab$个，要求前$k$大用堆就好了<br>问题转化为算出变化后为$x$的数个数$f[x]$<br>这显然可以数位Dp，$f[i][j][0..1]$表示考虑了前$i$位当前乘积为$j$，是/否已经小于$N$的数个数。但是第二维太过巨大不能枚举<br>发现$j$肯定是由2、3、5、7乘起来的，总量应该不会太多，打表发现确实只有1W多个，于是离散第二维Dp就好了</p>
+<h4 id="R2D1T1-assassin"><a href="#R2D1T1-assassin" class="headerlink" title="R2D1T1 assassin"></a>R2D1T1 assassin</h4><p><a href="http://www.lydsy.com/JudgeOnline/problem.php?id=3197" target="_blank" rel="external">BZOJ3197</a><br>复杂度简直玄妙<br>一上来先考虑树同构，以重心为根，用波兰哈希法得到每棵子树的hash值<br>$f[u][v]$表示第一棵树中$u$与第二棵树中$v$配对的最小代价（当然首先$u$、$v$的hash值相等），现在考虑配对它们的儿子，可以配对的$su$、$sv$之间连费用为$f[su][sv]$的边，跑费用流<br>好了没了，估计复杂度$O(n^7)$，可能没这么高，但是不会算</p>
+<h4 id="R2D1T2-spring"><a href="#R2D1T2-spring" class="headerlink" title="R2D1T2 spring"></a>R2D1T2 spring</h4><p><a href="http://www.lydsy.com/JudgeOnline/problem.php?id=3198" target="_blank" rel="external">BZOJ3198</a><br>设恰好有$k$个位置相同的组数为$G_k$<br>可以用哈希算出至少有$k$个位置相同的组数$F_k=\sum_{i=k}^6 C_k^i G_k$<br>那么答案$$G_k=\sum_{i=k}^6(-1)^{i-k}C_k^i F_i$$<br>这个结论是抄题解的，并不会用正常的方法推出来，求大爷教我<br>网上都没有证明，我就yy了一下：<br>上式展开成$$G_k=\sum_{i=k}^6(-1)^{i-k}C_k^i \sum_{j=i}^6 C_i^j G_k$$<br>发现$G_j$的系数$A_j=\sum_{i=k}^j(-1)^{i-k} C_k^i C_i^j$<br>由于$C_i^j C_k^i=C_k^j C_{i-k}^{j-k}$<br>所以$A_j=C_k^j \sum_{i=k}^j(-1)^{i-k}C_{i-k}^{j-k}=C_k^j \sum_{i=0}^{j-k}(-1)^i C_i^{j-k}$<br>根据二项式定理，$A_k=1$，其他$A$均为0</p>
+<blockquote>
+<h4 id="R2D1T3-escape"><a href="#R2D1T3-escape" class="headerlink" title="R2D1T3 escape"></a>R2D1T3 escape</h4><p><a href="http://www.lydsy.com/JudgeOnline/problem.php?id=3199" target="_blank" rel="external">BZOJ3199</a><br>半平面交然后求一下最短路<br>待补</p>
+</blockquote>
+<h4 id="R2D2T1-项链"><a href="#R2D2T1-项链" class="headerlink" title="R2D2T1 项链"></a>R2D2T1 项链</h4><p><a href="http://www.lydsy.com/JudgeOnline/problem.php?id=3202" target="_blank" rel="external">BZOJ3202</a><br>山东的同学数学都那么带劲吗</p>
+<ul>
+<li><p>Part I:<br>首先算出有几种不同的珍珠$A$<br>设有$i$个的珍珠个数为$A_i$，下面给出$A_3$的计算方法作为例子：<br>$$\begin{align}<br>A_3 &amp;=\sum_{i=1}^a\sum_{j=1}^a\sum_{k=1}^a \epsilon(gcd(i,j,k)) \\<br>   &amp;=\sum_d \mu(d) \lfloor \frac{a}{d} \rfloor ^3<br>\end{align}$$<br>那么发现$A_i=\sum_d \mu(d) \lfloor \frac{a}{d} \rfloor ^i$<br>考虑一下一个三元组(i,j,k)的算重次数，显然$A=\frac{A_3+3A_2+2A_1}{6}$</p>
+</li>
+<li><p>Part II:<br>现在相当于有A种颜色的珍珠，做等价类计数<br>然后就可以二话不说先套一发Polya定理，第$i$种置换是顺时针旋转$i$个珍珠，有$gcd(i,n)$个循环。我们先使得每个循环中的珍珠颜色一致。<br>那么有几种合法的不动点呢？<br>考虑珍珠$1$属于第一个循环，珍珠$2$属于第二个……珍珠$gcd(i,n)$属于第$gcd(i,n)$个，珍珠$gcd(i,n)+1$又属于第一个循环。<br>所以问题显然可以转换为：把每个循环看成一个珠子，相邻两个不能相同。即现有一个有$gcd(i,n)$个珠子的环，相邻两个不相同的方案数。<br>Dp一下试试：<br>设$f[i][0..1]$表示长度为$i$的链，最后一个元是/否和第一个相同的方案数<br>那么<br>$f[i][0]=f[i-1][1]\times(A-1)+f[i-1][0]\times(A-2)$<br>$f[i][1]=f[i-1][0]\times(A-2)$<br>发现$f[i][0]$就是长度为i的环的答案<br>这个可以用矩阵乘法加速，但是似乎会被卡常数我擦！<br>那么我需要一个通项式，但是两个互相关联的函数的通项式我不会求<br>那就化一下呗，看$f[i][0]$会怎么转移：<br>$f[i][0]→f[i+1][1], f[i+1][1]\times(A-1)→f[i+2][0]$<br>$f[i][0]\times(A-2)→f[i+1][0]$<br>所以设$F_i$表示长度为i的环的答案的话，$F_i=(A-2)\times F_{i-1}+(A-1)\times F_{i-2}$<br>注意如果环长为1的话，除非题目中给出的项链长度为1，否则显然是无论如何都不合法的，所以$F_1=0$<br>所以就很好推通项式了</p>
+</li>
+<li><p>Part III:<br>灿爷教我学数学<br>设$F$的生成函数$G(x)=\sum_{i\geq 1}F_i x^i$<br>$(A-2)xG(x)=\sum_{i\geq 2}(A-2)F_{i-1}x^i$<br>$(A-1)x^2 G(x)=\sum_{i\geq 3}(A-1)F_{i-2}x^i$<br>所以<br>$$[1-(A-2)x-(A-1)x^2]G(x)=F_1 x+F_2 x^2-F_1 x^2=(A^2-A)x^2$$<br>下面第三步用了待定系数法：<br>$$\begin{align}<br>G(x)&amp;=x\frac{(A^2-A)x}{1-(A-2)x-(A-1)x^2} \\<br>  &amp;=x\frac{(A^2-A)x}{[(1-A)x+1](x+1)} \\<br>  &amp;=x(\frac{A-1}{(1-A)x+1}+\frac{1-A}{x+1}) \\<br>  &amp;=x[(A-1)\sum_{i\geq 0}(A-1)^i x^i+(1-A)\sum_{i\geq 0}(-1)^i x^i] \\<br>  &amp;=\sum_{i\geq 1}[(A-1)^i+(1-A)(-1)^{i-1}]x^i<br>\end{align}$$<br>由此我们得到$F_i=(A-1)^i+(A-1)(-1)^i$</p>
+</li>
+<li><p>Part IV<br>知道了$F$的通项式以后<br>$$\begin{align}<br>Ans &amp;=\sum_{i=1}^n F_{gcd(i,n)} \\<br>  &amp;=\sum_{d|n}F_d \sum_{i=1}^{\frac{n}{d}}\epsilon(gcd(i,n)) \\<br>  &amp;=\sum_{d|n}F_d \sum_{i=1}^{\frac{n}{d}}\sum_{d’|gcd(i,\frac{n}{d})}\mu(d’) \\<br>  &amp;=\sum_{d|n}F_d \sum_{d’|\frac{n}{d}}\mu(d’) \frac{n}{dd’} \\<br>  &amp;=\sum_{d|n}F_d \phi(\frac{n}{d})<br>\end{align}$$<br>枚举约数算一下就好了</p>
+</li>
+<li><p>Final Part<br>整理一下刚才都干了什么<br>首先PartI反演算出珍珠颜色个数<br>再算出置换的不动点个数之和，利用$F_i$的通项式和PartIV的反演可以$O(\sqrt n\log n)$计算<br>最后根据polya定理除以$n$<br>你觉得这就没了吗？<br>发现$n$是$10^14$级别，所以可能与$Mod$不互质<br>那怎么办？发现$n$最多只有一个因子$Mod$，那么特判一下当$Mod|n$时，先在模$Mod^2$下算出分子，再把分子除掉$Mod$再乘上$\frac{n}{Mod}$即可，这样答案是不会变的</p>
+</li>
+</ul>
+<h4 id="R2D2T2-保护出题人"><a href="#R2D2T2-保护出题人" class="headerlink" title="R2D2T2 保护出题人"></a>R2D2T2 保护出题人</h4><p><a href="http://www.lydsy.com/JudgeOnline/problem.php?id=3203" target="_blank" rel="external">BZOJ3203</a><br>我该说巧妙呢还是傻逼呢<br>只要发现$y$之间独立，且$y_i=max(\frac{\sum_{k=j}^i a_i}{x_i+(i-j)\times d}),j&lt;i$，那就好做了<br>发现上式分子是$suma_i-suma_{j-1}$，分母是$(x_i+id)-jd$<br>所以把小于$i$的每个$j$看成一个点$(suma_{j-1},jd)$，询问点$(suma_i,x_i+id)$与这些点形成直线的最大斜率即可，这个可以维护一个下凸壳然后三分</p>
+<blockquote>
+<h4 id="R2D2T3-城市规划"><a href="#R2D2T3-城市规划" class="headerlink" title="R2D2T3 城市规划"></a>R2D2T3 城市规划</h4><p><a href="http://www.lydsy.com/JudgeOnline/problem.php?id=3204" target="_blank" rel="external">BZOJ3204</a><br>太神了不会，待补</p>
+</blockquote>
+
+            <div class="clearfix"></div>
+            <hr class="nogutter">
         </div>
-        
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2 opening-statement">
-                <div class="col-md-4">
-                    <h3><a href="/2016/03/27/SDOI2015-Round1/">SDOI2015 Round1</a></h3>
-                    <span>
-                        <span class="post-meta">
-      <time datetime="2016-03-27T04:29:07.000Z" itemprop="datePublished">
-          2016-03-27
-      </time>
-    
-</span>
-                    </span>
-                </div>
-                <div class="col-md-8">
-                    <p>
-                      
-                        <p>SDOI Round2题面常年下线，不过多亏这样我可以偷懒了(这么傻还敢偷懒FuQ)<br>
-                      
-                    </p>
-                    
-                    <p class="pull-right readMore">
-                        <a href="/2016/03/27/SDOI2015-Round1/">Read More...</a>
-                    </p>
-                    
-                </div>
-                <div class="clearfix"></div>
-                <hr class="nogutter">
-            </div>
-        </div>
-        
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2 opening-statement">
-                <div class="col-md-4">
-                    <h3><a href="/2016/03/25/SDOI2014-Round1/">SDOI2014 Round1</a></h3>
-                    <span>
-                        <span class="post-meta">
-      <time datetime="2016-03-25T04:17:39.000Z" itemprop="datePublished">
-          2016-03-25
-      </time>
-    
-</span>
-                    </span>
-                </div>
-                <div class="col-md-8">
-                    <p>
-                      
-                        <p>我们不生产题解，我们只是题解的搬运工<br>
-                      
-                    </p>
-                    
-                    <p class="pull-right readMore">
-                        <a href="/2016/03/25/SDOI2014-Round1/">Read More...</a>
-                    </p>
-                    
-                </div>
-                <div class="clearfix"></div>
-                <hr class="nogutter">
-            </div>
-        </div>
-        
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2 opening-statement">
-                <div class="col-md-4">
-                    <h3><a href="/2016/03/25/Function-Test/">Function Test</a></h3>
-                    <span>
-                        <span class="post-meta">
-      <time datetime="2016-03-25T04:02:42.000Z" itemprop="datePublished">
-          2016-03-25
-      </time>
-    
-</span>
-                    </span>
-                </div>
-                <div class="col-md-8">
-                    <p>
-                      
-                        <p>功能性测试<br>
-                      
-                    </p>
-                    
-                    <p class="pull-right readMore">
-                        <a href="/2016/03/25/Function-Test/">Read More...</a>
-                    </p>
-                    
-                </div>
-                <div class="clearfix"></div>
-                <hr class="nogutter">
-            </div>
-        </div>
-        
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2 opening-statement">
-                <div class="col-md-4">
-                    <h3><a href="/2016/03/25/hello-world/">Hello World</a></h3>
-                    <span>
-                        <span class="post-meta">
-      <time datetime="2016-03-25T01:31:57.198Z" itemprop="datePublished">
-          2016-03-25
-      </time>
-    
-</span>
-                    </span>
-                </div>
-                <div class="col-md-8">
-                    <p>
-                      
-                        Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick StartCreate a new p
-                      
-                    </p>
-                    
-                    <p class="pull-right readMore">
-                        <a href="/2016/03/25/hello-world/">Read More...</a>
-                    </p>
-                    
-                </div>
-                <div class="clearfix"></div>
-                <hr class="nogutter">
-            </div>
-        </div>
-        
         <nav class="pagination" role="pagination">
-          
-          
-        </nav>
+    
+    
+    <a class="pull-right" href="/2016/04/09/SDOI2012-Round1-Day1/">
+        SDOI2012 Round1 Day1 →
+    </a>
+    
+</nav>
+
+        <div class="duoshuo">
+<div class="ds-thread" data-thread-key="2016/04/29/SDOI2013/" data-title="SDOI2013" data-url="http://yoursite.com/2016/04/29/SDOI2013/"></div>
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"duoshuo_name"};
+(function() {
+	var ds = document.createElement('script');
+	ds.type = 'text/javascript';ds.async = true;
+	ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+	ds.charset = 'UTF-8';
+	(document.getElementsByTagName('head')[0] 
+	 || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+</script>
+</div>
     </div>
 </section>
-<section id="statement">
-    <div class="container text-center wow fadeInUp" data-wow-delay="0.5s">
-        <div class="row">
-            <p>热烈地去爱，坚强地活着</p>
-        </div>
-    </div>
-</section>
-<!-- ============================ END Content =========================== -->
+
 
       
 <!-- ============================ Footer =========================== -->
