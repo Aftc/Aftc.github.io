@@ -17,7 +17,7 @@
 <!--<![endif]-->
 
 <head>
-  <title>SDOI2013 | Being</title>
+  <title>Codeforces Round #334Div1 605E | Being</title>
   <!-- Meta data -->
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -224,66 +224,57 @@
         <div class="row col-md-offset-2">
             <div class="col-md-8">
     			<span class="post-meta">
-      <time datetime="2016-04-29T01:28:38.000Z" itemprop="datePublished">
-          2016-04-29
+      <time datetime="2016-06-22T13:18:43.000Z" itemprop="datePublished">
+          2016-06-22
       </time>
     
 </span>
-                <h1>SDOI2013</h1>
+                <h1>Codeforces Round #334Div1 605E</h1>
             </div>
         </div>
         <div class="col-md-8 col-md-offset-2">
-      		<p>为了不留下黑历史，我还是不要作任何主观评价比较好<br>怎么做得到嘛！<br><a id="more"></a></p>
-<blockquote>
-<h4 id="R1D1T1-随机数生成器"><a href="#R1D1T1-随机数生成器" class="headerlink" title="R1D1T1 随机数生成器"></a>R1D1T1 随机数生成器</h4><p><a href="http://www.lydsy.com/JudgeOnline/problem.php?id=3122" target="_blank" rel="external">BZOJ3122</a><br>BSGS+大讨论（不想做）<br>待补</p>
+      		<p>回顾了一下前几篇题解感觉简直是智障写的<br><a id="more"></a></p>
+<p>好像找不到中文题解啊</p>
+<h3 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h3><blockquote>
+<p>有个人在修路，他计划在$n$个城市间修建若干道路使得每个城市的度数都为奇数，而且规定只能在给定的$m$条道路中选择若干条建造<br>要求使得最长道路最短<br>输出第$i$行表示只能选择前$i$条道路时的答案</p>
 </blockquote>
-<h4 id="R1D1T2-森林"><a href="#R1D1T2-森林" class="headerlink" title="R1D1T2 森林"></a>R1D1T2 森林</h4><p><a href="http://www.lydsy.com/JudgeOnline/problem.php?id=3123" target="_blank" rel="external">BZOJ3123</a><br>容易发现如果在一棵树上查询，那就是主席树<br>这道题只有合并操作，那就好办了，启发式合并<br>每次Dfs小的那棵树，把小的那棵树合并进大的那棵树的主席树里</p>
-<h4 id="R1D1T3-直径"><a href="#R1D1T3-直径" class="headerlink" title="R1D1T3 直径"></a>R1D1T3 直径</h4><p><a href="http://www.lydsy.com/JudgeOnline/problem.php?id=3124" target="_blank" rel="external">BZOJ3124</a><br>第一问两次Dfs；也可以Dp：$f[u]$表示u的子树中直径，$g[u]$表示u子树中最深点深度，那么$f[u]=max(max(f[v]), max(g[v])+secondmax(g[v]))$，v表示u的儿子<br>第二问，如果每条直径都经过一条边，那么去掉这条边后形成了两个联通块，这两个联通块的直径一定会比原树的直径小（下面开始思维混乱，其实说说麻烦自己yy一下还是很简单的）<br>树形Dp一下，调用$Dfs(u, fa, F, G)$，传入参数F表示除了u的子树以外的联通块中的直径，G表示除了u的子树以外的联通块中的点距离u的最远距离<br>Dp数组$h[u][0..1]$表示u儿子们子树中的最深深度的最大值和次大值，$l[u][0..1]$表示u的儿子们的子树直径的最大值和次大值，这个可以在前面Dp算直径的时候算<br>那么显然去掉$(u,fa)$这条边后两个联通块的直径就是$F$和$f[u]$<br>考虑如何从u向儿子v转移，也就是说新的$F’$、$G’$是什么。<br>先设一个变量$tmp$，如果$g[v]==h[u][0]$<br>那么$$tmp=G+h[u][1],G’=max(G+w(fa, u), h[u][1])$$<br>否则$$tmp=G+h[u][0],G’=max(G+w(fa, u), h[u][0])$$<br>如果$f[v]==l[u][0]$，$F’=max(F, tmp, l[u][1])$，否则$F’=max(F, tmp, l[u][0])$</p>
-<p>如果上面哪里写错了……那很正常</p>
-<h4 id="R1D2T1-方程"><a href="#R1D2T1-方程" class="headerlink" title="R1D2T1 方程"></a>R1D2T1 方程</h4><p><a href="http://www.lydsy.com/JudgeOnline/problem.php?id=3129" target="_blank" rel="external">BZOJ3129</a><br>第二类条件直接在$m$中减掉$a-1$就好了，这样限制就变成了$x&gt;=1$<br>第一类条件很少，可以容斥，强制使得一些限制不满足，转化为第二类限制<br>然后就是组合数取模了，直接把模数分解成$\prod p^c$，对于每个$p^c$取模，然后CRT合并就好了<br>怎么取模呢，用阳阳教我的“拓展卢卡斯”（这应该是个口胡的名字）<br>考虑一个组合数$C_m^n=\frac{n!}{m!(n-m)!}$，把分母分子中的$p$都提取出来然后消掉，就可以算逆元了<br>现在考虑如何把一个阶乘中的$p$提取出来。<br>先预处理$p^c$以内不是$p$倍数的数的前缀乘积$Mul[i]$<br>显然$x$以内$p$的倍数个数是$\lfloor \frac{x}{p} \rfloor$，它们是$p,2p,3p……$，那么可以提取出$\lfloor \frac{x}{p} \rfloor$个p，并且这些数变成了$1,2,3……$，于是可以递归<br>剩下的数不是p的倍数，利用$Mul[i]$算<br>又发现$x\equiv p^c+x(mod p^c)$，于是每$p^c$个数的乘积是相同的，于是快速幂<br>妈的zz讲不清楚</p>
-<h4 id="R1D2T2-费用流"><a href="#R1D2T2-费用流" class="headerlink" title="R1D2T2 费用流"></a>R1D2T2 费用流</h4><p><a href="http://www.lydsy.com/JudgeOnline/problem.php?id=3130" target="_blank" rel="external">BZOJ3130</a><br>显然把所有P的单位费用都放在流量最大的一条边上是最优的<br>那么二分最大边就好了，注意要实数二分</p>
-<h4 id="R1D2T3-淘金"><a href="#R1D2T3-淘金" class="headerlink" title="R1D2T3 淘金"></a>R1D2T3 淘金</h4><p><a href="http://www.lydsy.com/JudgeOnline/problem.php?id=3131" target="_blank" rel="external">BZOJ3131</a><br>显然可以行列分开考虑，如果变化后为$x$的数有$a$个，为$y$的数有$b$个，那么坐标为$(x,y)$的数有$ab$个，要求前$k$大用堆就好了<br>问题转化为算出变化后为$x$的数个数$f[x]$<br>这显然可以数位Dp，$f[i][j][0..1]$表示考虑了前$i$位当前乘积为$j$，是/否已经小于$N$的数个数。但是第二维太过巨大不能枚举<br>发现$j$肯定是由2、3、5、7乘起来的，总量应该不会太多，打表发现确实只有1W多个，于是离散第二维Dp就好了</p>
-<h4 id="R2D1T1-assassin"><a href="#R2D1T1-assassin" class="headerlink" title="R2D1T1 assassin"></a>R2D1T1 assassin</h4><p><a href="http://www.lydsy.com/JudgeOnline/problem.php?id=3197" target="_blank" rel="external">BZOJ3197</a><br>复杂度简直玄妙<br>一上来先考虑树同构，以重心为根，用波兰哈希法得到每棵子树的hash值<br>$f[u][v]$表示第一棵树中$u$与第二棵树中$v$配对的最小代价（当然首先$u$、$v$的hash值相等），现在考虑配对它们的儿子，可以配对的$su$、$sv$之间连费用为$f[su][sv]$的边，跑费用流<br>好了没了，估计复杂度$O(n^7)$，可能没这么高，但是不会算</p>
-<h4 id="R2D1T2-spring"><a href="#R2D1T2-spring" class="headerlink" title="R2D1T2 spring"></a>R2D1T2 spring</h4><p><a href="http://www.lydsy.com/JudgeOnline/problem.php?id=3198" target="_blank" rel="external">BZOJ3198</a><br>设恰好有$k$个位置相同的组数为$G_k$<br>可以用哈希算出至少有$k$个位置相同的组数$F_k=\sum_{i=k}^6 C_k^i G_k$<br>那么答案$$G_k=\sum_{i=k}^6(-1)^{i-k}C_k^i F_i$$<br>这个结论是抄题解的，并不会用正常的方法推出来，求大爷教我<br>网上都没有证明，我就yy了一下：<br>上式展开成$$G_k=\sum_{i=k}^6(-1)^{i-k}C_k^i \sum_{j=i}^6 C_i^j G_k$$<br>发现$G_j$的系数$A_j=\sum_{i=k}^j(-1)^{i-k} C_k^i C_i^j$<br>由于$C_i^j C_k^i=C_k^j C_{i-k}^{j-k}$<br>所以$A_j=C_k^j \sum_{i=k}^j(-1)^{i-k}C_{i-k}^{j-k}=C_k^j \sum_{i=0}^{j-k}(-1)^i C_i^{j-k}$<br>根据二项式定理，$A_k=1$，其他$A$均为0</p>
-<blockquote>
-<h4 id="R2D1T3-escape"><a href="#R2D1T3-escape" class="headerlink" title="R2D1T3 escape"></a>R2D1T3 escape</h4><p><a href="http://www.lydsy.com/JudgeOnline/problem.php?id=3199" target="_blank" rel="external">BZOJ3199</a><br>半平面交然后求一下最短路<br>待补</p>
-</blockquote>
-<h4 id="R2D2T1-项链"><a href="#R2D2T1-项链" class="headerlink" title="R2D2T1 项链"></a>R2D2T1 项链</h4><p><a href="http://www.lydsy.com/JudgeOnline/problem.php?id=3202" target="_blank" rel="external">BZOJ3202</a><br>山东的同学数学都那么带劲吗</p>
-<ul>
-<li><p>Part I:<br>首先算出有几种不同的珍珠$A$<br>设有$i$个的珍珠个数为$A_i$，下面给出$A_3$的计算方法作为例子：<br>$$\begin{align}<br>A_3 &amp;=\sum_{i=1}^a\sum_{j=1}^a\sum_{k=1}^a \epsilon(gcd(i,j,k)) \\<br>   &amp;=\sum_d \mu(d) \lfloor \frac{a}{d} \rfloor ^3<br>\end{align}$$<br>那么发现$A_i=\sum_d \mu(d) \lfloor \frac{a}{d} \rfloor ^i$<br>考虑一下一个三元组(i,j,k)的算重次数，显然$A=\frac{A_3+3A_2+2A_1}{6}$</p>
-</li>
-<li><p>Part II:<br>现在相当于有A种颜色的珍珠，做等价类计数<br>然后就可以二话不说先套一发Polya定理，第$i$种置换是顺时针旋转$i$个珍珠，有$gcd(i,n)$个循环。我们先使得每个循环中的珍珠颜色一致。<br>那么有几种合法的不动点呢？<br>考虑珍珠$1$属于第一个循环，珍珠$2$属于第二个……珍珠$gcd(i,n)$属于第$gcd(i,n)$个，珍珠$gcd(i,n)+1$又属于第一个循环。<br>所以问题显然可以转换为：把每个循环看成一个珠子，相邻两个不能相同。即现有一个有$gcd(i,n)$个珠子的环，相邻两个不相同的方案数。<br>Dp一下试试：<br>设$f[i][0..1]$表示长度为$i$的链，最后一个元是/否和第一个相同的方案数<br>那么<br>$f[i][0]=f[i-1][1]\times(A-1)+f[i-1][0]\times(A-2)$<br>$f[i][1]=f[i-1][0]\times(A-2)$<br>发现$f[i][0]$就是长度为i的环的答案<br>这个可以用矩阵乘法加速，但是似乎会被卡常数我擦！<br>那么我需要一个通项式，但是两个互相关联的函数的通项式我不会求<br>那就化一下呗，看$f[i][0]$会怎么转移：<br>$f[i][0]→f[i+1][1], f[i+1][1]\times(A-1)→f[i+2][0]$<br>$f[i][0]\times(A-2)→f[i+1][0]$<br>所以设$F_i$表示长度为i的环的答案的话，$F_i=(A-2)\times F_{i-1}+(A-1)\times F_{i-2}$<br>注意如果环长为1的话，除非题目中给出的项链长度为1，否则显然是无论如何都不合法的，所以$F_1=0$<br>所以就很好推通项式了</p>
-</li>
-<li><p>Part III:<br>灿爷教我学数学<br>设$F$的生成函数$G(x)=\sum_{i\geq 1}F_i x^i$<br>$(A-2)xG(x)=\sum_{i\geq 2}(A-2)F_{i-1}x^i$<br>$(A-1)x^2 G(x)=\sum_{i\geq 3}(A-1)F_{i-2}x^i$<br>所以<br>$$[1-(A-2)x-(A-1)x^2]G(x)=F_1 x+F_2 x^2-F_1 x^2=(A^2-A)x^2$$<br>下面第三步用了待定系数法：<br>$$\begin{align}<br>G(x)&amp;=x\frac{(A^2-A)x}{1-(A-2)x-(A-1)x^2} \\<br>  &amp;=x\frac{(A^2-A)x}{[(1-A)x+1](x+1)} \\<br>  &amp;=x(\frac{A-1}{(1-A)x+1}+\frac{1-A}{x+1}) \\<br>  &amp;=x[(A-1)\sum_{i\geq 0}(A-1)^i x^i+(1-A)\sum_{i\geq 0}(-1)^i x^i] \\<br>  &amp;=\sum_{i\geq 1}[(A-1)^i+(1-A)(-1)^{i-1}]x^i<br>\end{align}$$<br>由此我们得到$F_i=(A-1)^i+(A-1)(-1)^i$</p>
-</li>
-<li><p>Part IV<br>知道了$F$的通项式以后<br>$$\begin{align}<br>Ans &amp;=\sum_{i=1}^n F_{gcd(i,n)} \\<br>  &amp;=\sum_{d|n}F_d \sum_{i=1}^{\frac{n}{d}}\epsilon(gcd(i,n)) \\<br>  &amp;=\sum_{d|n}F_d \sum_{i=1}^{\frac{n}{d}}\sum_{d’|gcd(i,\frac{n}{d})}\mu(d’) \\<br>  &amp;=\sum_{d|n}F_d \sum_{d’|\frac{n}{d}}\mu(d’) \frac{n}{dd’} \\<br>  &amp;=\sum_{d|n}F_d \phi(\frac{n}{d})<br>\end{align}$$<br>枚举约数算一下就好了</p>
-</li>
-<li><p>Final Part<br>整理一下刚才都干了什么<br>首先PartI反演算出珍珠颜色个数<br>再算出置换的不动点个数之和，利用$F_i$的通项式和PartIV的反演可以$O(\sqrt n\log n)$计算<br>最后根据polya定理除以$n$<br>你觉得这就没了吗？<br>发现$n$是$10^14$级别，所以可能与$Mod$不互质<br>那怎么办？发现$n$最多只有一个因子$Mod$，那么特判一下当$Mod|n$时，先在模$Mod^2$下算出分子，再把分子除掉$Mod$再乘上$\frac{n}{Mod}$即可，这样答案是不会变的</p>
-</li>
-</ul>
-<h4 id="R2D2T2-保护出题人"><a href="#R2D2T2-保护出题人" class="headerlink" title="R2D2T2 保护出题人"></a>R2D2T2 保护出题人</h4><p><a href="http://www.lydsy.com/JudgeOnline/problem.php?id=3203" target="_blank" rel="external">BZOJ3203</a><br>我该说巧妙呢还是傻逼呢<br>只要发现$y$之间独立，且$y_i=max(\frac{\sum_{k=j}^i a_i}{x_i+(i-j)\times d}),j&lt;i$，那就好做了<br>发现上式分子是$suma_i-suma_{j-1}$，分母是$(x_i+id)-jd$<br>所以把小于$i$的每个$j$看成一个点$(suma_{j-1},jd)$，询问点$(suma_i,x_i+id)$与这些点形成直线的最大斜率即可，这个可以维护一个下凸壳然后三分</p>
-<blockquote>
-<h4 id="R2D2T3-城市规划"><a href="#R2D2T3-城市规划" class="headerlink" title="R2D2T3 城市规划"></a>R2D2T3 城市规划</h4><p><a href="http://www.lydsy.com/JudgeOnline/problem.php?id=3204" target="_blank" rel="external">BZOJ3204</a><br>太神了不会，待补</p>
-</blockquote>
+<h4 id="Link-Cut-Tree"><a href="#Link-Cut-Tree" class="headerlink" title="Link-Cut Tree"></a>Link-Cut Tree</h4><p>为了不混淆，我们将原图成为图$G$，把修建的路形成的图成为图$T$</p>
+<p>先引入一个引理：首先判断能不能度数都为奇数，发现当且仅当$G$的节点数为偶数时才可能</p>
+<p>当有奇数个点时，如果每个点度数为奇数，那么总度数为奇数$\times$奇数$=$奇数，而这是不可能的</p>
+<p>当有偶数个点时，只需要求出任意一棵生成树，然后从叶子开始一路向上贪心割边，使得除了根以外每个点度数都为奇数（发现这是可以做到的），然后这时我们知道由于整棵树有偶数个点，那么除了根以外有奇数个点，而且这奇数个点度数都为奇数，那么此时除了根以外的点的总度数为奇数，又由于我们知道无向图总度数永远为偶数，所以根的度数此时也必定是奇数。</p>
+<p>这个引理不仅可以判断有无解这么简单，它还说明只要我们使得$T$的每一个联通块都包含偶数个点，就一定有办法去掉一些边使得所有点度数都为奇数</p>
+<p>这样很容易想到暴力算法：每次将前$i$条边排序，然后跑最小生成森林，直到加进去某条边以后能使得所有联通块大小都为偶数，那么这条边的长度即为答案</p>
+<p>为什么呢？因为显然包含奇数个点的联通块数量是永远不会变多的，对于一条边连接的两个联通块来说，奇数连奇数变成偶数，偶数连奇数变成奇数，偶数连偶数变成偶数。</p>
+<p>为了方便，下面把度数为奇数的点叫做奇点，偶点、奇联通块、偶联通块的意义也类似。</p>
+<p>看到最小生成森林和在线加边，显然会想到用$LCT$试试。每加进去一条边$(u,v)$，如果它连接的两个联通块本来不连通，那就直接$link$，否则如果$w(u,v)$小于树上$u$、$v$间最大边权值，就替换那条最大边。除了以上操作以外，还要额外维护一个加进$LCT$的边的$set$，完成加边后从大到小观察$set$里面的边，如果将这条边断开后形成的两个联通块都是偶联通块，那就删掉它，直到发现一条删掉后会形成奇联通块的边，它就是答案。</p>
+<p>关于联通块的大小，似乎需要用$toptree$</p>
+<h4 id="Link-Cut-Tree-II"><a href="#Link-Cut-Tree-II" class="headerlink" title="Link-Cut Tree II"></a>Link-Cut Tree II</h4><p>杜教优化了一下标算的编程复杂度。定义一条删掉后会形成两个偶联通块的边为偶边，否则为奇边。那么记录$LCT$中每条边的类型，当加进去的边替换了原有的边时，新边和旧边具有相同的类型；不在$u$、$v$路径上的边不会变；在$u$、$v$路径上的边，如果旧边是偶边，则类型不变，否则取反。这个很好证明。然后最大的奇边就是答案。</p>
+<p>实现上有点神奇的技巧，主要利用一个引理：随着可用的边增多，答案单调不增。将所有$LCT$中的边加进$set$，每次加完边后在$set$里找小于等于上次答案的最大奇边就可以了。</p>
+<h4 id="整体二分"><a href="#整体二分" class="headerlink" title="整体二分"></a>整体二分</h4><p>先离散边权。分治函数$work(l,r,lo,hi)$表示解决$[l,r]$的询问，已知这些询问的答案在$[lo,hi]$中。</p>
+<p>使得$mid=\lfloor \frac{l+r}{2} \rfloor$，假设找出了$ans_{mid}$，那么根据上面第二个引理，就可以缩小问题范围并调用$work(l,mid-1,ans_{mid},hi)$和$work(mid+1,r,lo,ans_{mid})$来解决子问题了</p>
+<p>要在与$l、r、lo、hi$有关的时间复杂度内求出$ans_{mid}$，需要维护一个可撤销的并查集（按秩合并，可以用一个栈来存储修改，然后一步步撤销栈中的操作），用这个并查集来维护联通块的奇偶信息。在进入递归函数$work(l,r,lo,hi)$之前，保证编号在$[1,l)$且权值在$[1,lo)$的边已经加入并查集。此时要求出$ans_{mid}$，先将编号$[l,mid]$权值$[1,lo)$的边加进并查集，再按照权值从小到大把编号$[1,mid]$权值$[lo,hi]$的边往并查集里面加，直到加进某条边后所有联通块都为欧联通块，这条边就是$ans_{mid}$。找到$ans_{mid}$后撤销刚才的加边。</p>
+<p>调用$work(l,mid-1,ans_{mid},hi)$之前要把编号$[1,l)$权值$[lo,ans_{mid})$的边加进去，调用完后撤销。</p>
+<p>调用$work(mid+1,r,lo,ans_{mid})$之前要把编号$[l,mid]$权值$[1,lo)$的边加进去，调用完后撤销。</p>
+<h4 id="线段树"><a href="#线段树" class="headerlink" title="线段树"></a>线段树</h4><p>最奇怪的做法，也是灿爷的做法</p>
+<p>引理：如果一条编号为$i$的边出现在$ans_j$的最优解中，那么它肯定出现在$[i,j]$的所有最优解中。用算法一可以很好地证明（这似乎不算证明吧，都想到算法一了怎么还会去想这个算法……）</p>
+<p>那么暴力地想，每个时刻维护一个并查集，可以先暴力求出$m$的最优解，然后对于最优解中的每条边$i$，都在$[i,m)$的并查集中加入边$i$；然后做$m-1$的最优解……以此类推</p>
+<p>发现可以用线段树优化这一线段式覆盖的过程，线段树每个节点开一个$set$，存下所有在该区间内一定出现在最优解中的边。先将所有从小到大边排序放进$ed[]$数组。在线段树上先右儿子后左儿子遍历，同时维护一个可撤销的并查集，进入一个节点的时候把该节点$set$中的边加进并查集，退出的时候撤销掉。每当到达一个叶子（假设时刻为$t$），就从上一个叶子做到的地方开始加$ed[]$中没有考虑过的边，如果可以加就加进来并且更新并查集并且在线段树上用这条边（假设出现时刻为$x$）更新区间$[x,t)$，加边过程在所有联通块都为偶联通块时停止。</p>
+<p><strong>总的来说是一道信息量很大的题，<del>可以长点姿♂势♂</del></strong></p>
 
             <div class="clearfix"></div>
             <hr class="nogutter">
         </div>
         <nav class="pagination" role="pagination">
     
-    <a class="pull-left" href="/2016/06/22/Codeforces-Round-334(Div1)-603E/" style="float: left;">
-        ← Codeforces Round #334Div1 605E
-    </a>
     
-    
-    <a class="pull-right" href="/2016/04/09/SDOI2012-Round1-Day1/">
-        SDOI2012 Round1 Day1 →
+    <a class="pull-right" href="/2016/04/29/SDOI2013/">
+        SDOI2013 →
     </a>
     
 </nav>
 
         <div class="duoshuo">
-<div class="ds-thread" data-thread-key="2016/04/29/SDOI2013/" data-title="SDOI2013" data-url="http://yoursite.com/2016/04/29/SDOI2013/"></div>
+<div class="ds-thread" data-thread-key="2016/06/22/Codeforces-Round-334(Div1)-603E/" data-title="Codeforces Round #334Div1 605E" data-url="http://yoursite.com/2016/06/22/Codeforces-Round-334(Div1)-603E/"></div>
 <script type="text/javascript">
 var duoshuoQuery = {short_name:"duoshuo_name"};
 (function() {
